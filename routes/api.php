@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\api\empresaController;
+use App\Http\Controllers\api\authController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,7 @@ use App\Http\Controllers\api\empresaController;
 
 //LOGIN
 
-Route::post('/autenticacion', function(){
-    return 'Datos de usuario enviados';
-});
+Route::post('/autenticacion', [authController::class, 'login']);
 
 Route::post('/registro', function(){
     return 'usuario creado';
