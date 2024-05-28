@@ -11,17 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 20);
-            $table->integer('nit')->unique();
+            $table->integer('identificacion')->unique();
             $table->string('email')->unique();
             $table->string('clave');
+            $table->integer('telefono');
             $table->string('avatar')->default('default-avatar.png');
             $table->string('direccion', 100);
-            $table->integer('telefono');
             $table->boolean('estado')->default(true);
             $table->timestamps();
+
+            $table->enum('tipo_documento', ['CC', 'CE', 'Pasaporte'])->default('CC');
+
+            //$table->foreignId('id_empresa')->constrained('empresas');
+            //$table->foreignId('id_ciudad')->constrained('ciudades');
         });
     }
 
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('clientes');
     }
 };

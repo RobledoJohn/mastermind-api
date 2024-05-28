@@ -1,18 +1,17 @@
 <?php
 
+use App\Http\Controllers\api\authController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+/* ruta de la pagina de inicio que llama la vista welcome.blade.php
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+//ruta para pagina de incio que muestra un mensaje
+Route::get('/', function () {
+    return "home";
+});
+
+Route::post('/login', [authController::class, 'login']);
