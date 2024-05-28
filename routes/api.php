@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\api\empresaController;
 use App\Http\Controllers\api\authController;
+
+use App\Http\Controllers\api\empresaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +32,16 @@ Route::post('/recuperar', function(){
     return 'correo enviado';
 });
 
-//creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que re segistren.
-Route::get('/empresas', [empresaController::class, 'readEmpresas']);
-Route::post('/empresas', [empresaController::class, 'createEmpresa']);
-Route::get('/{idEmpresa}/empresas', [empresaController::class, 'readEmpresaById']);
-Route::put('/{idEmpresa}/empresas', [empresaController::class, 'updateEmpresa']);
-Route::delete('/{idEmpresa}/empresas', [empresaController::class, 'deleteEmpresa']);
+//creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que registren.
+Route::get('/empresas', [empresaController::class, 'read']);
+Route::post('/empresas', [empresaController::class, 'create']);
+Route::get('/empresas/{idEmpresa}', [empresaController::class, 'findById']);
+Route::put('/empresas/{idEmpresa}', [empresaController::class, 'update']);
+Route::patch('/empresas/{idEmpresa}', [empresaController::class, 'updateOne']);
+Route::delete('/empresas/{idEmpresa}', [empresaController::class, 'delete']);
 
 
-//CRUD DEMAS ROLES (ADMIN-CLIENTE-TECNICO)
+//CRUD DEMAS ROLES (CLIENTE-TECNICO)
 
 //API CLIENTES
 //esta ruta lista los clientes de una empresa en especifico

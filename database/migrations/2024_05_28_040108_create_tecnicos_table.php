@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 20);
             $table->string('email')->unique();
             $table->string('clave');
-            $table->integer('telefono')->unique();
+            $table->bigInteger('telefono')->unique();
             $table->string('avatar')->default('default-avatar.png');
             $table->boolean('estado')->default(true);
             $table->timestamps();

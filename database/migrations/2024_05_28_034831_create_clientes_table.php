@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 20);
-            $table->integer('identificacion')->unique();
+            $table->bigInteger('identificacion')->unique();
             $table->string('email')->unique();
             $table->string('clave');
-            $table->integer('telefono')->unique();
+            $table->bigInteger('telefono')->unique();
             $table->string('avatar')->default('default-avatar.png');
             $table->string('direccion', 100);
             $table->boolean('estado')->default(true);

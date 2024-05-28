@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 20);
-            $table->integer('nit')->unique();
+            $table->bigInteger('nit')->unique();
             $table->string('email')->unique();
             $table->string('clave');
             $table->string('avatar')->default('default-avatar.png');
             $table->string('direccion', 100);
-            $table->integer('telefono')->unique();
+            $table->bigInteger('telefono')->unique();
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });
