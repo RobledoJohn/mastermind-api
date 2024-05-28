@@ -17,13 +17,13 @@ return new class extends Migration
             $table->integer('identificacion')->unique();
             $table->string('email')->unique();
             $table->string('clave');
-            $table->integer('telefono');
+            $table->integer('telefono')->unique();
             $table->string('avatar')->default('default-avatar.png');
             $table->string('direccion', 100);
             $table->boolean('estado')->default(true);
             $table->timestamps();
 
-            $table->enum('tipo_documento', ['CC', 'CE', 'Pasaporte'])->default('CC');
+            $table->enum('enum_tipo_documento', ['CC', 'CE', 'Pasaporte'])->default('CC');
 
             //$table->foreignId('id_empresa')->constrained('empresas');
             //$table->foreignId('id_ciudad')->constrained('ciudades');

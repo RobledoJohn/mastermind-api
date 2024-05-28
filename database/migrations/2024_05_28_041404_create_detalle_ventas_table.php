@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ciudades', function (Blueprint $table) {
+        Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->integer('cantidad')->unique();
+            $table->integer('monto')->unique();
+            $table->string('descripcion');
+            $table->timestamps();
+
+            //$table->foreignId('id_tipo_detalle')->constrained('tipos_detalles');
+
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ciudades');
+        Schema::dropIfExists('detalle_ventas');
     }
 };

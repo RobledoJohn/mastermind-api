@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ciudades', function (Blueprint $table) {
+        Schema::create('modelos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
+            $table->timestamps();
+
+            $table->enum('enum_tipo_equipos', ['Celular', 'Tablet', 'AIO', 'Portatil', 'Escritorio'])->default('Celular');
+
+            //$table->foreignId('id_marca')->constrained('marcas');
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ciudades');
+        Schema::dropIfExists('modelos');
     }
 };

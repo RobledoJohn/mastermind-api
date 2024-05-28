@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('tecnicos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 20);
-            $table->integer('nit')->unique();
             $table->string('email')->unique();
             $table->string('clave');
-            $table->string('avatar')->default('default-avatar.png');
-            $table->string('direccion', 100);
             $table->integer('telefono')->unique();
+            $table->string('avatar')->default('default-avatar.png');
             $table->boolean('estado')->default(true);
             $table->timestamps();
+
+            //$table->foreignId('id_empresa')->constrained('empresas');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('tecnicos');
     }
 };
