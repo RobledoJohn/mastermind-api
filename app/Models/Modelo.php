@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Model
+class Modelo extends Model
 {
     use HasFactory;
 
-    protected $table = 'empresas';
+    protected $table = 'modelos';
 
     protected $fillable = [
         'nombre',
-        'nit',
-        'email',
-        'clave',
-        'avatar',
-        'direccion',
-        'telefono',
-        'estado'
+        'enum_tipo_equipos'
     ];
 }

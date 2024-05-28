@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
             $table->string('enlace_seguimiento');
-            $table->integer('nit')->unique();
             $table->timestamps();
 
             $table->enum('enum_estado_reparacion', ['Sin asignar', 'Recepción', 'Diagnóstico', 'Reparación', 
