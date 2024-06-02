@@ -7,6 +7,8 @@ use App\Http\Controllers\api\authController;
 
 use App\Http\Controllers\api\empresaController;
 
+use App\Http\Controllers\api\ordenesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -137,9 +139,7 @@ Route::delete('/{idEmpresa}/ingresos/{id}', function(){
 
 
 //esta ruta lista las ordenes activas, es decir trabajos que se encuentran en ejecucion por los tecnicos
-Route::get('/{idEmpresa}/ordenes', function(){
-    return 'lista de ordenes';
-});
+Route::get('/ordenes', [ordenesController::class, 'read']);
 
 Route::get('/{idEmpresa}/ordenes/{id}', function(){
     return 'obtener orden';

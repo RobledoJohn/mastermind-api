@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 //ruta para pagina de incio que muestra un mensaje
 Route::get('/', function () {
-    return "home";
+    return "CRUD Iniciado";
 });
 
 Route::post('/login', [authController::class, 'login']);
