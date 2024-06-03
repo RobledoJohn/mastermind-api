@@ -4,3 +4,8 @@
 
 [build.environment]
   PHP_VERSION = "8.2"
+
+[[redirects]]
+  from = "/*"
+  to = "http://backend.example.com/:splat"
+  status = 200
