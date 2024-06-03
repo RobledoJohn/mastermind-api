@@ -7,5 +7,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "http://backend.example.com/:splat"
+  to = "/index.php"
   status = 200
