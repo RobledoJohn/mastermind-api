@@ -1,6 +1,6 @@
 [build]
   command = "composer install && npm run build"
-  publish = "public/build"
+  publish = "public"
 
 [build.environment]
   PHP_VERSION = "8.2"
@@ -9,3 +9,4 @@
   from = "/*"
   to = "/index.php"
   status = 200
+  force = true
