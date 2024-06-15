@@ -12,7 +12,7 @@ class empresaController extends Controller
 {
     public function read(){
 
-        $empresa = empresa::all();
+        $empresa = Empresa::all();
 
         if($empresa->isEmpty()){
             $data = [
@@ -31,7 +31,7 @@ class empresaController extends Controller
             'nombre' => 'required|max:255',
             'nit' => 'required|digits:10|unique:empresas,nit',
             'email' => 'required|email|unique:empresas,email',
-            'clave' => 'required|min:8|max:255',
+            'clave' => 'required|min:8|max:16',
             'direccion' => 'required|max:255',
             'telefono' => 'required|digits:10|unique:empresas,telefono'
         ]);

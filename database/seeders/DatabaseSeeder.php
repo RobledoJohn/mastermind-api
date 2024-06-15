@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Cliente;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,11 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $cliente = new Cliente();
+        $cliente->nombre = 'Test User';
+        $cliente->identificacion = '1234567890';
+        $cliente->email = 'test@user.com';
+        $cliente->clave = '1234567890';
+        $cliente->telefono = '3123121122';
+        $cliente->avatar = 'img.jpeg';
+        $cliente->direccion = 'Calle 123 # 123-123';
+        $cliente->estado = '1';
+        $cliente->enum_tipo_documento = '1';
+        $cliente->save();
+
+        
     }
 }
