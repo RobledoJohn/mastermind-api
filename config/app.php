@@ -3,6 +3,26 @@
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
+$providers = ServiceProvider::defaultProviders()->merge([
+    /*
+     * Package Service Providers...
+     */
+
+    /*
+     * Application Service Providers...
+     */
+    App\Providers\AppServiceProvider::class,
+    App\Providers\AuthServiceProvider::class,
+    // App\Providers\BroadcastServiceProvider::class,
+    App\Providers\EventServiceProvider::class,
+    App\Providers\RouteServiceProvider::class,
+])->toArray();
+
+// Solo cargar CollisionServiceProvider en el entorno local
+if (env('APP_ENV') === 'local') {
+    $providers[] = \NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class;
+}
+
 return [
 
     /*
@@ -155,20 +175,7 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+    'providers' => $providers,
 
     /*
     |--------------------------------------------------------------------------
