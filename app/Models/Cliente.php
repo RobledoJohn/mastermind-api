@@ -20,6 +20,14 @@ class Cliente extends Model
         'avatar',
         'direccion',
         'estado',
-        'enum_tipo_documento'
+        'enum_tipo_documento',
+        'id_empresa',
+        'id_ciudad'
     ];
+
+    // Se define relacion uno a muchos con la tabla equipos porque cliente tiene muchos equipos
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
+    }
 }

@@ -25,11 +25,10 @@ return new class extends Migration
 
             $table->enum('enum_tipo_documento', ['CC', 'CE', 'Pasaporte'])->default('CC');
 
-            //$table->unsignedBigInteger('id_empresa');
-            //$table->unsignedBigInteger('id_ciudad');
+            // Relaciones
 
-            //$table->foreignId('id_empresa')->constrained('empresas');
-            //$table->foreignId('id_ciudad')->constrained('ciudades');
+            $table->foreignId('id_empresa')->constrained('empresas')->onDelete('cascade');
+            $table->foreignId('id_ciudad')->constrained('ciudades')->onDelete('cascade');
         });
     }
 

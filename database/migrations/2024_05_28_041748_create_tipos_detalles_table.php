@@ -17,8 +17,8 @@ return new class extends Migration
 
             $table->enum('enum_tipos_detalle', ['ingreso', 'Producto'])->default('Ingreso');
 
-            //$table->foreignId('id_ingreso')->constrained('ingresos');
-            //$table->foreignId('id_producto')->constrained('productos');
+            $table->foreignId('id_ingreso')->constrained('ingresos')->onDelete('cascade');
+            $table->foreignId('id_producto')->constrained('productos')->onDelete('cascade');
         });
     }
 

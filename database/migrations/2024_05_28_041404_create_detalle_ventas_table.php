@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->timestamps();
 
-            //$table->foreignId('id_tipo_detalle')->constrained('tipos_detalles');
+            $table->foreignId('id_tipo_detalle')->constrained('tipos_detalles')->onDelete('cascade');
 
         });
     }

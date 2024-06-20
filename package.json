@@ -11,6 +11,6 @@
         "vite": "^4.5.3"
     },
     "dependencies": {
-        "@vercel/postgres": "^0.8.0"
+        "bootstrap": "^5.3.3"
     }
 }

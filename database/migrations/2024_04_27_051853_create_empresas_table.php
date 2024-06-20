@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('avatar')->default('default-avatar.png');
             $table->string('direccion', 100);
             $table->bigInteger('telefono')->unique();
-            $table->boolean('estado')->default(true);
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

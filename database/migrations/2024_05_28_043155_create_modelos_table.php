@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->enum('enum_tipo_equipos', ['Celular', 'Tablet', 'AIO', 'Portatil', 'Escritorio'])->default('Celular');
 
-            //$table->foreignId('id_marca')->constrained('marcas');
+            $table->foreignId('id_marca')->constrained('marcas')->onDelete('cascade');
         });
     }
 

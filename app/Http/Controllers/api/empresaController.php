@@ -10,21 +10,6 @@ use App\Models\Empresa;
 
 class empresaController extends Controller
 {
-    public function read(){
-
-        $empresa = Empresa::all();
-
-        if($empresa->isEmpty()){
-            $data = [
-                'mensaje' => 'No se encontraron empresas',
-                'status' => 200
-            ];
-            return response()->json($data, 404);
-        }else{
-            return response()->json($empresa, 200);
-        }
-    }
-
     public function create(Request $request){
         
         $validacion = Validator::make($request->all(), [ //se valida que los datos sean correctos y se contsruye el objeto validacion

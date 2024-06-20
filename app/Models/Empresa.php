@@ -23,4 +23,10 @@ class Empresa extends Model
         'telefono',
         'estado'
     ];
+
+    // Se define relacion uno a muchos con la tabla cliente porque empresa tiene muchos clientes
+    public function clientes()
+    {
+        return $this->hasMany(Cliente::class);
+    }
 }

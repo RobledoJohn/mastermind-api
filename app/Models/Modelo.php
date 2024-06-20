@@ -15,4 +15,10 @@ class Modelo extends Model
         'nombre',
         'enum_tipo_equipos'
     ];
+
+    // Relación Uno a Muchos: Un modelo tiene muchos equipos
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class);
+    }
 }

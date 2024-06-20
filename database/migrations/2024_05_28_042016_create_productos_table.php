@@ -22,8 +22,8 @@ return new class extends Migration
             $table->boolean('estado')->default(true);
             $table->timestamps();
 
-            //$table->foreignId('id_empresa')->constrained('empresas');
-            //$table->foreignId('id_categoria')->constrained('categorias');
+            $table->foreignId('id_empresa')->constrained('empresas')->onDelete('cascade');
+            $table->foreignId('id_categoria')->constrained('categorias')->onDelete('cascade');
         });
     }
 
