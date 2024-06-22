@@ -18,10 +18,24 @@ class Ingreso extends Model
         'id_equipo'
     ];
 
+    //--------Relaciones Principal--------
+
+    public function ingresos()
+    {
+        return $this->hasMany(Ingreso::class);
+    }
+
+    public function tipos_detalle()
+    {
+        return $this->hasOne(Tipo_Detalle::class);
+    }
+
     //--------Relaciones--------
 
     public function tecnicos()
     {
         return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
     }
+
+    //falta crear tabla intermedia con equipos porque relacion muchos a muchos!!!!!
 }

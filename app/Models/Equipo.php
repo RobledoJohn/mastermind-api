@@ -16,8 +16,9 @@ class Equipo extends Model
         'id_cliente', // Clave foránea a Cliente
         'id_modelo'   // Clave foránea a Modelo
     ];
+    //-------------------- Relaciones Principales --------------------
 
-    
+    //crear tabla intermedia con ingresos porque relacion muchos a muchos!!!!!
 
     // Relación Muchos a Uno: Un equipo pertenece a un cliente
     public function clientes()
