@@ -25,7 +25,7 @@ class Cliente extends Model
         'id_ciudad'
     ];
 
-    // Se define relacion uno a muchos con la tabla equipos porque cliente tiene muchos equipos
+    // se relaciona clientes con empresa porque un cliente pertenece a una empresa
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');

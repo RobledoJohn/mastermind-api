@@ -18,6 +18,13 @@ class Producto extends Model
         'descripcion',
         'cantidad',
         'precio',
-        'estado'
+        'estado',
+        'id_empresa'
     ];
+
+    // se relaciona productos con empresa porque un productos pertenece a una empresa
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
+    }
 }

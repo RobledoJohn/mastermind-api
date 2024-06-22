@@ -17,6 +17,12 @@ class Tecnico extends Model
         'clave',
         'telefono',
         'avatar',
-        'estado'
+        'estado',
+        'id_empresa'
     ];
+    // // se relaciona tecnicos con empresa porque un tecnico pertenece a una empresa
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
+    }
 }
