@@ -20,6 +20,16 @@ class Tecnico extends Model
         'estado',
         'id_empresa'
     ];
+    //----Relaciones Principal--------
+
+    
+    public function ingresos()
+    {
+        return $this->hasMany(Ingreso::class);
+    }
+    
+    //--------Relaciones foraneas--------
+
     // // se relaciona tecnicos con EMPRESA porque un tecnico pertenece a una empresa
     public function empresas()
     {

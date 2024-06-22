@@ -13,6 +13,15 @@ class Ingreso extends Model
 
     protected $fillable = [
         'enlace_seguimiento',
-        'enum_estado_reparacion'
+        'enum_estado_reparacion', 
+        'id_tecnico',
+        'id_equipo'
     ];
+
+    //--------Relaciones--------
+
+    public function tecnicos()
+    {
+        return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
+    }
 }
