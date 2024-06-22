@@ -14,4 +14,9 @@ class Ciudad extends Model
     protected $fillable = [
         'nombre'
     ];
+
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'ciudad_id');
+    }
 }

@@ -30,4 +30,10 @@ class Cliente extends Model
     {
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
     }
+    
+    // se relaciona clientes con ciudad porque un cliente pertenece a una ciudad
+    public function ciudad()
+    {
+        return $this->belongsTo(Ciudad::class, 'ciudad_id');
+    }
 }
