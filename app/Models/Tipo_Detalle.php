@@ -13,7 +13,8 @@ class Tipo_Detalle extends Model
 
     protected $fillable = [
         'enum_tipo_detalle', 
-        'id_ingreso'
+        'id_ingreso', 
+        'id_producto'
     ];
 
     //--------Relaciones Principal--------
@@ -24,6 +25,13 @@ class Tipo_Detalle extends Model
 
     public function ingresos()
     {
-        return $this->belongsTo(Ingreso::class, 'id_tipo_detalle', 'id');
+        return $this->belongsTo(Ingreso::class, 'id_ingreso', 'id');
+    }
+
+    // Relación Uno a Uno: Un tipo de detalle corresponde a un producto
+
+    public function productos()
+    {
+        return $this->belongsTo(Producto::class, 'id_producto', 'id');
     }
 }

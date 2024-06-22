@@ -22,6 +22,13 @@ class Producto extends Model
         'id_empresa'
     ];
 
+    //-------------------- Relaciones Principales --------------------
+
+    public function tipos_detalles()
+    {
+        return $this->hasOne(Tipo_Detalle::class);
+    }
+
     // se relaciona productos con EMPRESA porque un productos pertenece a una empresa
     public function empresas()
     {

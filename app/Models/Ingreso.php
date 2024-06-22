@@ -20,11 +20,6 @@ class Ingreso extends Model
 
     //--------Relaciones Principal--------
 
-    public function ingresos()
-    {
-        return $this->hasMany(Ingreso::class);
-    }
-
     public function tipos_detalle()
     {
         return $this->hasOne(Tipo_Detalle::class);
