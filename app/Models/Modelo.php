@@ -16,9 +16,9 @@ class Modelo extends Model
         'enum_tipo_equipos'
     ];
 
-    // Relación Uno a Muchos: Un modelo tiene muchos equipos
+    // Relación Uno a Uno: Un modelo es un equipo
     public function equipos()
     {
-        return $this->hasMany(Equipo::class);
+        return $this->hasOne(Equipo::class);
     }
 }

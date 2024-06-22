@@ -17,6 +17,6 @@ class Ciudad extends Model
 
     public function cliente()
     {
-        return $this->hasOne(Cliente::class, 'ciudad_id');
+        return $this->hasOne(Cliente::class);
     }
 }

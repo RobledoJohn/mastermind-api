@@ -13,19 +13,21 @@ class Equipo extends Model
 
     protected $fillable = [
         'estado',
-        'cliente_id', // Clave foránea a Cliente
-        'modelo_id'   // Clave foránea a Modelo
+        'id_cliente', // Clave foránea a Cliente
+        'id_modelo'   // Clave foránea a Modelo
     ];
 
+    
+
     // Relación Muchos a Uno: Un equipo pertenece a un cliente
-    public function cliente()
+    public function clientes()
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    // Relación Muchos a Uno: Un equipo pertenece a un modelo
-    public function modelo()
+    // Relación Uno a Uno: Un equipo corresponde a un modelo
+    public function modelos()
     {
-        return $this->belongsTo(Modelo::class);
+        return $this->belongsTo(Modelo::class, 'id_modelo', 'id');
     }
 }

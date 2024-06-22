@@ -24,6 +24,15 @@ class Cliente extends Model
         'id_empresa',
         'id_ciudad'
     ];
+    //----Relaciones Principal--------
+
+    // Relación Uno a Muchos: Un cliente tiene muchos equipos
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class);
+    }
+
+    //----Relaciones foraneas--------
 
     // se relaciona clientes con EMPRESA porque un cliente pertenece a una empresa
     public function empresas()
