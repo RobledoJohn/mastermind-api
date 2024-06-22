@@ -25,15 +25,15 @@ class Cliente extends Model
         'id_ciudad'
     ];
 
-    // se relaciona clientes con empresa porque un cliente pertenece a una empresa
-    public function empresa()
+    // se relaciona clientes con EMPRESA porque un cliente pertenece a una empresa
+    public function empresas()
     {
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
     }
-    
-    // se relaciona clientes con ciudad porque un cliente pertenece a una ciudad
-    public function ciudad()
+
+    // se relaciona clientes con CIUDAD porque un cliente pertenece a una ciudad
+    public function ciudades()
     {
-        return $this->belongsTo(Ciudad::class, 'ciudad_id');
+        return $this->belongsTo(Ciudad::class, 'id_ciudad', 'id');
     }
 }

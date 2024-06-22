@@ -20,8 +20,8 @@ class Tecnico extends Model
         'estado',
         'id_empresa'
     ];
-    // // se relaciona tecnicos con empresa porque un tecnico pertenece a una empresa
-    public function empresa()
+    // // se relaciona tecnicos con EMPRESA porque un tecnico pertenece a una empresa
+    public function empresas()
     {
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
     }
