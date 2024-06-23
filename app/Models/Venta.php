@@ -25,8 +25,8 @@ class Venta extends Model
 
     // se relaciona ventas con DETALLE_VENTA porque una venta tiene un detalle de venta
 
-    public function ingreso()
-    {
-        return $this->belongsTo(Ingreso::class, 'id_ingreso', 'id');
-    }
+//     public function ingreso()
+//     {
+//         return $this->belongsTo(Ingreso::class, 'id_ingreso', 'id');
+//     }
 }

@@ -23,10 +23,10 @@ class Ingreso extends Model
 
     //--------Relaciones--------
 
-    public function tecnicos()
-    {
-        return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
-    }
+    // public function tecnicos()
+    // {
+    //     return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
+    // }
 
     //un ingreso esta relacionado a un equipo
 }

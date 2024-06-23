@@ -23,10 +23,10 @@ class Tecnico extends Model
     //----Relaciones Principal--------
 
     
-    public function ingresos()
-    {
-        return $this->hasMany(Ingreso::class);
-    }
+    // public function ingresos()
+    // {
+    //     return $this->hasMany(Ingreso::class);
+    // }
     
     //--------Relaciones foraneas--------
 

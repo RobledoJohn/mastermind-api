@@ -33,8 +33,8 @@ class Producto extends Model
 
     // se relaciona productos con CATEGORIA porque un productos pertenece a una categoria
 
-    public function categorias()
-    {
-        return $this->belongsTo(Categoria::class, 'id_categoria', 'id');
-    }
+    // public function categorias()
+    // {
+    //     return $this->belongsTo(Categoria::class, 'id_categoria', 'id');
+    // }
 }

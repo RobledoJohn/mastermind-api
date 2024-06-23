@@ -11,7 +11,7 @@ class clientesController extends Controller
 {
     public function read(){
 
-        $clientes = Cliente::with('empresa')->get();
+        $clientes = Cliente::with('empresas')->get();
 
         return response()->json($clientes);
 

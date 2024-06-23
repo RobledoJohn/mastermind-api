@@ -26,7 +26,8 @@ use function Laravel\Prompts\alert;
 //CRUD(DESARROLLADOR)
 
 //creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que registren.
-Route::get('/empresas', [AdminEmpresaController::class, 'read'])->name('admin.empresas'); //laravel
+Route::get('/empresas', [AdminEmpresaController::class, 'getEmpresas'])->name('admin.empresas'); //laravel
+Route::get('/equipos', [AdminEmpresaController::class, 'getEquipos']); //laravel
 
 //LOGIN
 
