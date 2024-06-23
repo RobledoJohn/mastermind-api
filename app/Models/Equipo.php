@@ -29,8 +29,8 @@ class Equipo extends Model
     }
 
     // // Relación Uno a Uno: Un equipo corresponde a un modelo
-    // public function modelos()
-    // {
-    //     return $this->belongsTo(Modelo::class, 'id_modelo', 'id');
-    // }
+    public function modelos()
+    {
+        return $this->belongsTo(Modelo::class, 'id_modelo', 'id');
+    }
 }

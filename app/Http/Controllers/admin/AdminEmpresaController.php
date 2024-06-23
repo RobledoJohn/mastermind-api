@@ -22,7 +22,7 @@ class AdminEmpresaController extends Controller
     }
     public function getEquipos(){
 
-        $equipos = Equipo::with('clientes')->get();
+        $equipos = Equipo::with('clientes', 'modelos')->get();
 
         if($equipos->isEmpty()){
             return response()->json($equipos);
