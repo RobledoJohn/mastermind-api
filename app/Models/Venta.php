@@ -14,7 +14,7 @@ class Venta extends Model
     protected $fillable = [
         'enum_medio_pago',
         'id_empresa',
-        'id_cliente'
+        'id_ingreso'
     ];
 
     // se relaciona ventas con EMPRESA porque una venta pertenece a una empresa
@@ -23,10 +23,10 @@ class Venta extends Model
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
     }
 
-    // se relaciona ventas con CLIENTE porque una venta pertenece a un cliente
+    // se relaciona ventas con DETALLE_VENTA porque una venta tiene un detalle de venta
 
-    public function clientes()
+    public function ingreso()
     {
-        return $this->belongsTo(Cliente::class, 'id_cliente', 'id');
+        return $this->belongsTo(Ingreso::class, 'id_ingreso', 'id');
     }
 }

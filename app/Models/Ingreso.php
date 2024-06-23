@@ -13,17 +13,13 @@ class Ingreso extends Model
 
     protected $fillable = [
         'enlace_seguimiento',
-        'enum_estado_reparacion', 
+        'enum_estado_reparacion',
         'id_tecnico',
-        'id_equipo'
+        'id_equipo', 
+        'id_detalle_venta'
     ];
 
     //--------Relaciones Principal--------
-
-    public function tipos_detalle()
-    {
-        return $this->hasOne(Tipo_Detalle::class);
-    }
 
     //--------Relaciones--------
 
@@ -32,5 +28,5 @@ class Ingreso extends Model
         return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
     }
 
-    //falta crear tabla intermedia con equipos porque relacion muchos a muchos!!!!!
+    //un ingreso esta relacionado a un equipo
 }

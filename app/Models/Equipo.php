@@ -18,12 +18,14 @@ class Equipo extends Model
     ];
     //-------------------- Relaciones Principales --------------------
 
-    //crear tabla intermedia con ingresos porque relacion muchos a muchos!!!!!
+    //un equipo puede tener muchos ingresos
+
+
 
     // Relación Muchos a Uno: Un equipo pertenece a un cliente
     public function clientes()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class, 'id_cliente', 'id');
     }
 
     // Relación Uno a Uno: Un equipo corresponde a un modelo

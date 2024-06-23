@@ -19,19 +19,22 @@ class Producto extends Model
         'cantidad',
         'precio',
         'estado',
-        'id_empresa'
+        'id_empresa',
+        'id_categoria'
     ];
 
     //-------------------- Relaciones Principales --------------------
-
-    public function tipos_detalles()
-    {
-        return $this->hasOne(Tipo_Detalle::class);
-    }
 
     // se relaciona productos con EMPRESA porque un productos pertenece a una empresa
     public function empresas()
     {
         return $this->belongsTo(Empresa::class, 'id_empresa', 'id');
+    }
+
+    // se relaciona productos con CATEGORIA porque un productos pertenece a una categoria
+
+    public function categorias()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria', 'id');
     }
 }

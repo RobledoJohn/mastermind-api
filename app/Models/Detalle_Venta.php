@@ -14,6 +14,16 @@ class Detalle_Venta extends Model
     protected $fillable = [
         'cantidad',
         'monto',
-        'descripcion'
+        'descripcion', 
+        'enum_tipo_detalle',
+        'id_producto',
+        'id_ingreso',
+        'id_venta'
     ];
+
+
+    //--------Relaciones--------
+
+
+
 }
