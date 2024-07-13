@@ -25,6 +25,11 @@ class Producto extends Model
 
     //-------------------- Relaciones Principales --------------------
 
+    public function detalle_ventas()
+    {
+        return $this->hasMany(Detalle_Venta::class);
+    }
+
     // se relaciona productos con EMPRESA porque un productos pertenece a una empresa
     public function empresas()
     {
@@ -33,8 +38,8 @@ class Producto extends Model
 
     // se relaciona productos con CATEGORIA porque un productos pertenece a una categoria
 
-    // public function categorias()
-    // {
-    //     return $this->belongsTo(Categoria::class, 'id_categoria', 'id');
-    // }
+    public function categorias()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria', 'id');
+    }
 }

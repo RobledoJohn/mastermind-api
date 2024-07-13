@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->boolean('estado')->default(true);
+            $table->interger('imei')->unique();
 
             $table->foreignId('id_cliente')->constrained('clientes')->onDelete('cascade');
             $table->foreignId('id_modelo')->constrained('modelos')->onDelete('cascade');

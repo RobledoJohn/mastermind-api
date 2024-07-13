@@ -13,6 +13,7 @@ class Equipo extends Model
 
     protected $fillable = [
         'estado',
+        'imei',
         'id_cliente', // Clave foránea a Cliente
         'id_modelo'   // Clave foránea a Modelo
     ];
@@ -20,7 +21,10 @@ class Equipo extends Model
 
     //un equipo puede tener muchos ingresos
 
-
+    public function ingresos()
+    {
+        return $this->hasMany(Ingreso::class);
+    }
 
     // Relación Muchos a Uno: Un equipo pertenece a un cliente
     public function clientes()

@@ -9,7 +9,19 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Empresa;
 
 class empresaController extends Controller
+
 {
+    public function findAll(){
+
+        $empresas = Empresa::all();
+
+        if($empresas->isEmpty()){
+            return view('NoEmpresas');
+        }else{
+            return response()->json($empresas);
+        }
+    }
+
     public function create(Request $request){
         
         $validacion = Validator::make($request->all(), [ //se valida que los datos sean correctos y se contsruye el objeto validacion

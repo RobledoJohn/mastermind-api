@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('descripcion');
             $table->timestamps();
 
-            $table->enum('enum_tipo_detalle', ['Ingreso', 'Producto'])->default('Ingreso');
-
             $table->foreignId('id_producto')->constrained('productos')->onDelete('cascade');
             $table->foreignId('id_ingreso')->constrained('ingresos')->onDelete('cascade');
 

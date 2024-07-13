@@ -26,16 +26,20 @@ use function Laravel\Prompts\alert;
 //CRUD(DESARROLLADOR)
 
 //creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que registren.
-Route::get('/empresas', [AdminEmpresaController::class, 'getEmpresas'])->name('admin.empresas'); //laravel
-Route::get('/equipos', [AdminEmpresaController::class, 'getEquipos']); //laravel
+Route::get('/admin/empresas', [AdminEmpresaController::class, 'getEmpresas'])->name('admin.empresas'); //laravel
+Route::get('/admin/equipos', [AdminEmpresaController::class, 'getEquipos']); //laravel
+Route::get('/admin/tecnicos', [AdminEmpresaController::class, 'getTecnicos'])->name('admin.tecnicos'); //laravel
+Route::get('/admin/ingresos', [AdminEmpresaController::class, 'getOrdenes'])->name('admin.ordenes'); //laravel
+Route::get('/admin/productos', [AdminEmpresaController::class, 'getProductos']); //laravel
+Route::get('/admin/ventas', [AdminEmpresaController::class, 'getVentas']); //laravel
 
 //LOGIN
 
-Route::post('/autenticacion', [authController::class, 'login']);
-
+Route::post('/auth', [authController::class, 'login']);
 Route::post('/recuperar', function(){return alert('activo');});
 
 //CRUD EMPRESAS de usuario
+Route::get('/empresas', [empresaController::class, 'findAll']);
 Route::post('/empresas', [empresaController::class, 'create']);
 Route::get('/empresas/{idEmpresa}', [empresaController::class, 'findById']);
 Route::put('/empresas/{idEmpresa}', [empresaController::class, 'update']);

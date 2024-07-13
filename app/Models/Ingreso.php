@@ -21,12 +21,23 @@ class Ingreso extends Model
 
     //--------Relaciones Principal--------
 
+    public function detalle_ventas()
+    {
+        return $this->hasMany(Detalle_Venta::class);
+    }
+
     //--------Relaciones--------
 
-    // public function tecnicos()
-    // {
-    //     return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
-    // }
+    public function tecnicos()
+    {
+        return $this->belongsTo(Tecnico::class, 'id_tecnico', 'id');
+    }
 
     //un ingreso esta relacionado a un equipo
+    
+    public function equipos()
+    {
+        return $this->belongsTo(Equipo::class, 'id_equipo', 'id');
+    }
+    
 }

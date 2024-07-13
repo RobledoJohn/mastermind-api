@@ -17,13 +17,25 @@ class Detalle_Venta extends Model
         'descripcion', 
         'enum_tipo_detalle',
         'id_producto',
-        'id_ingreso',
-        'id_venta'
+        'id_ingreso'
     ];
 
 
     //--------Relaciones--------
 
+    public function ventas()
+    {
+        return $this->hasMany(Venta::class);
+    }
 
+    public function productos()
+    {
+        return $this->belongsTo(Producto::class, 'id_producto', 'id');
+    }
+
+    public function ingresos()
+    {
+        return $this->belongsTo(Ingreso::class, 'id_ingreso', 'id');
+    }
 
 }

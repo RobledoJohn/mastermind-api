@@ -18,8 +18,7 @@ return new class extends Migration
             $table -> enum('enum_medio_pago', ['Efectivo', 'PSE', 'Transferencia', 'Tarjeta de crédito', 'Tarjeta débito'])->default('Efectivo');
 
             $table->foreignId('id_empresa')->constrained('empresas')->onDelete('cascade');
-            $table->foreignId('id_cliente')->constrained('clientes')->onDelete('cascade');
-            $table->foreignId('id_detalle_Venta')->constrained('detalle_ventas')->onDelete('cascade');
+            $table->foreignId('id_detalle_venta')->constrained('detalle_ventas')->onDelete('cascade');
         });
     }
 
