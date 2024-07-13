@@ -41,7 +41,7 @@ Route::post('/recuperar', function(){return alert('activo');});
 //CRUD EMPRESAS de usuario
 Route::get('/empresas', [empresaController::class, 'findAll']);
 Route::post('/empresas', [empresaController::class, 'create']);
-Route::get('/empresas/{idEmpresa}', [empresaController::class, 'findById']);
+Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']);
 Route::put('/empresas/{idEmpresa}', [empresaController::class, 'update']);
 //Route::patch('/empresas/{idEmpresa}', [empresaController::class, 'updateOne']);
 Route::delete('/empresas/{idEmpresa}', [empresaController::class, 'delete']);

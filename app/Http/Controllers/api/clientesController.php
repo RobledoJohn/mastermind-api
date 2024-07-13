@@ -10,11 +10,6 @@ use App\Models\Cliente;
 class clientesController extends Controller
 {
     public function read(){
-
-        $clientes = Cliente::with('empresas')->get();
-
-        return response()->json($clientes);
-
  /* 
         // Obtén el parámetro 'empresa_id' de la solicitud
         $empresaId = $request->query('empresa_id');
