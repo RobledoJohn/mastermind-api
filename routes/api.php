@@ -12,17 +12,6 @@ use App\Http\Controllers\api\ordenesController;
 
 use function Laravel\Prompts\alert;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
 //CRUD(DESARROLLADOR)
 
 //creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que registren.
@@ -36,15 +25,18 @@ Route::get('/admin/ventas', [AdminEmpresaController::class, 'getVentas']); //lar
 //LOGIN
 
 Route::post('/auth', [authController::class, 'login']);
-Route::post('/recuperar', function(){return alert('activo');});
+//Route::post('/recuperar', function(){return alert('activo');});
 
 //CRUD EMPRESAS de usuario
-Route::get('/empresas', [empresaController::class, 'findAll']);
-Route::post('/empresas', [empresaController::class, 'create']);
-Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']);
-Route::put('/empresas/{idEmpresa}', [empresaController::class, 'update']);
+
+Route::get('/empresas', [empresaController::class, 'findAll']); //busqueda para ver json
+Route::post('/empresas', [empresaController::class, 'create']); //ruta para crear cuenta de empresa
+
+Route::put('/empresas', [empresaController::class, 'update']); //ruta para actualizar datos de empresa
+
+//Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']); //NO SE USA PORQUE SE ALMACENA EN LOCAL STORAGE
 //Route::patch('/empresas/{idEmpresa}', [empresaController::class, 'updateOne']);
-Route::delete('/empresas/{idEmpresa}', [empresaController::class, 'delete']);
+//Route::delete('/empresas/{idEmpresa}', [empresaController::class, 'delete']); //NO SE USA PORQUE SE ACTUALIZA EL ESTADO A CERO
 
 
 //CRUD DEMAS ROLES (CLIENTE-TECNICO)

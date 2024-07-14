@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 use App\Models\Empresa;
 
@@ -100,13 +101,15 @@ class empresaController extends Controller
 
     }
 
-    public function update(Request $request, $idEmpresa){
-        
-        $empresa = Empresa::find($idEmpresa);
+    public function update(Request $request){
+
+        $id = $request->id;
+
+        $empresa = Empresa::find($id);
 
         if(!$empresa){
             $data = [
-                'id'=> $idEmpresa,
+                'id'=> $id,
                 'mensaje' => 'Empresa no encontrada',
                 'status' => 200
             ];
@@ -115,11 +118,11 @@ class empresaController extends Controller
 
         $validacion = Validator::make($request->all(), [ //se valida que los datos sean correctos y se contsruye el objeto validacion
             'nombre' => 'required|max:255',
-            'nit' => 'required|digits:10|unique:empresas,nit',
-            'email' => 'required|email|unique:empresas,email',
+            'nit' => [Rule::unique('empresas')->ignore($id)],
+            'email' => [Rule::unique('empresas')->ignore($id)],
             'clave' => 'required|min:8|max:255',
             'direccion' => 'required|max:255',
-            'telefono' => 'required|digits:10|unique:empresas,telefono'
+            'telefono' => [Rule::unique('empresas')->ignore($id)]
         ]);
 
         if($validacion->fails()){ //si la validacion falla se retorna el error al cliente
@@ -135,6 +138,7 @@ class empresaController extends Controller
         $empresa->nit = $request->nit;
         $empresa->email = $request->email;
         $empresa->clave = $request->clave;
+        $empresa->avatar = $request->avatar;
         $empresa->direccion = $request->direccion;
         $empresa->telefono = $request->telefono;
 

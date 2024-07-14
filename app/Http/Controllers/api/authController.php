@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Empresa;
 
-use function Laravel\Prompts\alert;
-
 class authController extends Controller
 {
     public function login(Request $request){
