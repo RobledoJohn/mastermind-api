@@ -42,7 +42,7 @@ Route::put('/empresas', [empresaController::class, 'update']); //ruta para actua
 
 //esta ruta lista los servicios ingresados que no han sido aceptados por ningun tecnico
 //Route::get('/ingresos', [ordenesController::class, 'read']);
-Route::get('/ingresos', [ordenesController::class, 'read']); //<------ no funciona aun
+Route::get('/ingresos', [ordenesController::class, 'read']); // Trae los ingresos por id de la empresa que inicia sesion
 
 Route::get('/{idEmpresa}/ingresos/{id}', function(){return 'obtener ingreso';});
 Route::post('/{idEmpresa}/ingresos', function(){return 'ingreso creado';});
