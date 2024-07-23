@@ -31,7 +31,6 @@ Route::post('/auth', [authController::class, 'login']);
 
 Route::get('/empresas', [empresaController::class, 'findAll']); //busqueda para ver json
 Route::post('/empresas', [empresaController::class, 'create']); //ruta para crear cuenta de empresa
-
 Route::put('/empresas', [empresaController::class, 'update']); //ruta para actualizar datos de empresa
 
 //Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']); //NO SE USA PORQUE SE ALMACENA EN LOCAL STORAGE
@@ -40,6 +39,15 @@ Route::put('/empresas', [empresaController::class, 'update']); //ruta para actua
 
 
 //CRUD DEMAS ROLES (CLIENTE-TECNICO)
+
+//esta ruta lista los servicios ingresados que no han sido aceptados por ningun tecnico
+//Route::get('/ingresos', [ordenesController::class, 'read']);
+Route::get('/ingresos', [ordenesController::class, 'read']); //<------ no funciona aun
+
+Route::get('/{idEmpresa}/ingresos/{id}', function(){return 'obtener ingreso';});
+Route::post('/{idEmpresa}/ingresos', function(){return 'ingreso creado';});
+Route::put('/{idEmpresa}/ingresos/{id}', function(){return 'actualizar ingreso';});
+Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso';});
 
 //API CLIENTES
 //esta ruta lista los clientes de una empresa en especifico
@@ -69,15 +77,8 @@ Route::post('/{idEmpresa}/equipos', function(){return 'crear equipo';});
 Route::put('/{idEmpresa}/equipos/{id}', function(){return 'actualizar equipo';});
 Route::delete('/{idEmpresa}/equipos/{id}', function(){return 'eliminar equipo';});
 
-//esta ruta lista los servicios ingresados que no han sido aceptados por ningun tecnico
-Route::get('/{idEmpresa}/ingresos', function(){return 'lista de ingresos';});
-Route::get('/{idEmpresa}/ingresos/{id}', function(){return 'obtener ingreso';});
-Route::post('/{idEmpresa}/ingresos', function(){return 'ingreso creado';});
-Route::put('/{idEmpresa}/ingresos/{id}', function(){return 'actualizar ingreso';});
-Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso';});
-
 //esta ruta lista las ordenes activas, es decir trabajos que se encuentran en ejecucion por los tecnicos
-Route::get('/ordenes', [ordenesController::class, 'read']);
+Route::get('/ordenes', function(){return 'lista de ordenes';});
 Route::get('/{idEmpresa}/ordenes/{id}', function(){return 'obtener orden';});
 Route::post('/{idEmpresa}/ordenes', function(){return 'orden creado';});
 Route::put('/{idEmpresa}/ordenes/{id}', function(){return 'actualizar orden';});

@@ -25,7 +25,7 @@ class Tecnico extends Model
     
     public function ingresos()
     {
-        return $this->hasMany(Ingreso::class);
+        return $this->hasMany(Ingreso::class, 'id_tecnico', 'id');
     }
     
     //--------Relaciones foraneas--------

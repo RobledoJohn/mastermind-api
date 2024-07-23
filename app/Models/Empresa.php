@@ -32,7 +32,7 @@ class Empresa extends Model
     // Se define relacion uno a muchos con la tabla tecnicos porque empresa tiene muchos tecnicos
     public function tecnicos()
     {
-        return $this->hasMany(Tecnico::class);
+        return $this->hasMany(Tecnico::class, 'id_empresa', 'id');
     }
     // Se define relacion uno a muchos con la tabla ventas porque empresa tiene muchos ventas
     public function ventas()
