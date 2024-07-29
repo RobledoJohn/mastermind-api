@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Empresa;
+use Illuminate\Http\Request;
+use App\Models\Producto;
 
-use function Laravel\Prompts\select;
-
-class ordenesController extends Controller
+class inventariosController extends Controller
 {
     public function read($requestId){
 
         //tomamos el id de la empresa que se envia por query
         $idEmpresa = $requestId;
-        
+
         /*Se verifica que el id sea enviado como parametro */
         if ($idEmpresa == null) {
             $data = [
@@ -22,22 +21,17 @@ class ordenesController extends Controller
             ];
             return response()->json($data, 404);
         }
-        
-        $ordenes = Empresa::where('empresas.id', $idEmpresa)
-        ->join('tecnicos', 'empresas.id', '=', 'tecnicos.id_empresa')
-        ->join('ingresos', 'tecnicos.id', '=', 'ingresos.id_tecnico')
-        ->select('ingresos.*', 'tecnicos.nombre as tecnico')
-        ->get();        
-        
-        if ($ordenes->isEmpty()) {
+
+        $inventario = Producto::where('productos.id_empresa', $idEmpresa)->get();
+
+        if ($inventario->isEmpty()) {
             $data = [
-                'mensaje' => 'No se encontraron ordenes',
+                'mensaje' => 'No hay inventario',
                 'status' => 404
             ];
             return response()->json($data, 404);
         } else {
-            return response()->json($ordenes, 200);
-        }    
-
-    }    
+            return response()->json($inventario, 200);
+        } 
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\api\empresaController;
 use App\Http\Controllers\admin\AdminEmpresaController;
 use App\Http\Controllers\api\clientesController;
 use App\Http\Controllers\api\ordenesController;
+use App\Http\Controllers\api\inventariosController;
 
 use function Laravel\Prompts\alert;
 
@@ -67,7 +68,7 @@ Route::put('/{idEmpresa}/tecnicos/{id}', function(){return 'actualizar tecnico';
 Route::delete('/{idEmpresa}/tecnicos/{id}', function(){return 'eliminar tecnico';});
 
 //esta ruta lista el inventario(productos) de una empresa en especifico
-Route::get('/{idEmpresa}/inventario', function(){return 'lista de productos';});
+Route::get('/{idEmpresa}/inventario', [inventariosController::class, 'read']);
 
 //API EQUIPOS
 //esta ruta lista los equipos de una empresa en especifico, aqui que se muestra??
