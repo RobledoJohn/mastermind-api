@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\AdminEmpresaController;
 use App\Http\Controllers\api\clientesController;
 use App\Http\Controllers\api\ordenesController;
 use App\Http\Controllers\api\inventariosController;
+use App\Http\Controllers\api\ventasController;
 
 use function Laravel\Prompts\alert;
 
@@ -87,7 +88,7 @@ Route::delete('/{idEmpresa}/ordenes/{id}', function(){return 'eliminar orden';})
 
 
 //esta lista muestra como venta las ordenes de servicio finalizadas con el monto total y los repuestos del inventario que fueron usados
-Route::get('/{idEmpresa}/ventas', function(){return 'lista de ventas';});
+Route::get('/{idEmpresa}/ventas', [ventasController::class, 'read']);
 Route::get('/{idEmpresa}/ventas/{id}', function(){return 'obtener venta';});
 Route::post('/{idEmpresa}/ventas', function(){return 'venta creado';});
 Route::put('/{idEmpresa}/ventas/{id}', function(){return 'actualizar venta';});
