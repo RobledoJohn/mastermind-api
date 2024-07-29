@@ -11,6 +11,7 @@ use App\Http\Controllers\api\clientesController;
 use App\Http\Controllers\api\ordenesController;
 use App\Http\Controllers\api\inventariosController;
 use App\Http\Controllers\api\ventasController;
+use App\Http\Controllers\api\tecnicosController;
 
 use function Laravel\Prompts\alert;
 
@@ -62,7 +63,7 @@ Route::delete('/{idEmpresa}/clientes/{id}', function(){return 'eliminar cliente'
 
 //API TECNICOS
 //esta ruta lista los tecnicos de una empresa en especifico
-Route::get('/{idEmpresa}/tecnicos', function(){return 'lista de tecnicos';});
+Route::get('/{idEmpresa}/tecnicos', [tecnicosController::class, 'read']);
 Route::get('/{idEmpresa}/tecnicos/{id}', function(){return 'obtener tecnico';});
 Route::post('/{idEmpresa}/tecnicos', function(){return 'tecnico creado';});
 Route::put('/{idEmpresa}/tecnicos/{id}', function(){return 'actualizar tecnico';});
