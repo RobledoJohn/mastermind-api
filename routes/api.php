@@ -54,7 +54,7 @@ Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso'
 //API CLIENTES
 //esta ruta lista los clientes de una empresa en especifico
 //el id de la empresa se envia por query (/clienntes?id_empresa=x), si no se envia query se listan todos los clientes del sistema
-Route::get('/clientes', [clientesController::class, 'read']);
+Route::get('/{idEmpresa}/clientes', [clientesController::class, 'read']);
 Route::get('/{idEmpresa}/clientes/{id}', function(){return 'obtener clientes';});
 Route::post('/{idEmpresa}/clientes', function(){return 'cliente creado';});
 Route::put('/{idEmpresa}/clientes/{id}', function(){return 'actualizar cliente';});

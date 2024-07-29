@@ -3,27 +3,38 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Models\Cliente;
 
 class clientesController extends Controller
 {
-    public function read(){
- /* 
-        // Obtén el parámetro 'empresa_id' de la solicitud
-        $empresaId = $request->query('empresa_id');
+    public function read($requestId){
+
+        //tomamos el id de la empresa que se envia por query
+        $idEmpresa = $requestId;
         
-        // Si se proporciona 'empresa_id', filtra los clientes por este campo
-        if ($empresaId) {
-            $clientes = Cliente::where('empresa_id', $empresaId)->get();
-        } else {
-            // Si no se proporciona 'empresa_id', obtiene todos los clientes
-            $clientes = Cliente::all();
+        /*Se verifica que el id sea enviado como parametro */
+        if ($idEmpresa == null) {
+            $data = [
+                'mensaje' => 'No se envio id de empresa',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
         }
         
-        // Devuelve los clientes como respuesta JSON
-        return response()->json($clientes);
-       */
-    }
+        $clientes = Cliente::where('clientes.id_empresa', $idEmpresa)
+        ->join('empresas', 'clientes.id_empresa', '=', 'empresas.id')
+        ->select('empresas.nombre as empresa', 'clientes.*')
+        ->get();        
+        
+        if ($clientes->isEmpty()) {
+            $data = [
+                'mensaje' => 'No se encontraron ordenes',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        } else {
+            return response()->json($clientes, 200);
+        }    
+
+    }  
 }
