@@ -22,7 +22,10 @@ class inventariosController extends Controller
             return response()->json($data, 404);
         }
 
-        $inventario = Producto::where('productos.id_empresa', $idEmpresa)->get();
+        $inventario = Producto::where('productos.id_empresa', $idEmpresa)
+        ->join('categorias', 'productos.id_categoria', '=', 'categorias.id')
+        ->select('productos.*', 'categorias.nombre as categoria')
+        ->get();
 
         if ($inventario->isEmpty()) {
             $data = [
