@@ -13,10 +13,10 @@ class Ingreso extends Model
 
     protected $fillable = [
         'enlace_seguimiento',
+        'descripcion',
         'enum_estado_reparacion',
         'id_tecnico',
-        'id_equipo', 
-        'id_detalle_venta'
+        'id_equipo'
     ];
 
     //--------Relaciones Principal--------

@@ -46,9 +46,8 @@ Route::put('/empresas', [empresaController::class, 'update']); //ruta para actua
 //esta ruta lista los servicios ingresados que no han sido aceptados por ningun tecnico
 //Route::get('/ingresos', [ordenesController::class, 'read']);
 Route::get('/{idEmpresa}/ingresos', [ordenesController::class, 'read']); // Trae los ingresos por id de la empresa que inicia sesion
+Route::post('/{idEmpresa}/ingresos', [ordenesController::class, 'create']); //ruta para crear ingreso
 
-Route::get('/{idEmpresa}/ingresos/{id}', function(){return 'obtener ingreso';});
-Route::post('/{idEmpresa}/ingresos', function(){return 'ingreso creado';});
 Route::put('/{idEmpresa}/ingresos/{id}', function(){return 'actualizar ingreso';});
 Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso';});
 
@@ -56,7 +55,7 @@ Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso'
 //esta ruta lista los clientes de una empresa en especifico
 //el id de la empresa se envia por query (/clienntes?id_empresa=x), si no se envia query se listan todos los clientes del sistema
 Route::get('/{idEmpresa}/clientes', [clientesController::class, 'read']);
-Route::get('/{idEmpresa}/clientes/{id}', function(){return 'obtener clientes';});
+Route::get('/{idEmpresa}/clientes/{documento}', [clientesController::class, 'findByDocumento']);
 Route::post('/{idEmpresa}/clientes', function(){return 'cliente creado';});
 Route::put('/{idEmpresa}/clientes/{id}', function(){return 'actualizar cliente';});
 Route::delete('/{idEmpresa}/clientes/{id}', function(){return 'eliminar cliente';});

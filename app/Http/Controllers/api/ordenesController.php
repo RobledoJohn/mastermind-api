@@ -4,8 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa;
-
-use function Laravel\Prompts\select;
+use App\Models\Ingreso;
+use Illuminate\Http\Request;
 
 class ordenesController extends Controller
 {
@@ -40,4 +40,32 @@ class ordenesController extends Controller
         }    
 
     }    
+
+    public function create(Request $request){
+
+        if($request->id_cliente == null || $request->id_equipo == null){
+            $data = [
+                'mensaje' => 'Faltan datos',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }else{
+            $ingreso = Ingreso::create([
+                'id_tecnico' => $request->id_tecnico,
+                'id_equipo' => $request->id_equipo,
+                'descripcion' => $request->descripcion,
+                'enum_estado_reparacion' => $request->enum_estado_reparacion,
+                'enlace_seguimiento' => $request->enlace_seguimiento,
+            ]);
+
+            $data = [
+                'mensaje' => 'Ingreso creado',
+                'status' => 200,
+                'request' => $ingreso
+            ];
+
+            return response()->json($ingreso, 200);
+        }
+        
+    }        
 }

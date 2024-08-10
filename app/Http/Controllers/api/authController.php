@@ -29,14 +29,5 @@ class authController extends Controller
             // Si no se encuentra la empresa, devuelve un mensaje de error
             return response()->json(['mensaje' => 'Empresa no encontrada'], 404);
         }
-/* funcional
-        $email = $request->email;
-        $password = $request->password;
-
-        return response()->json([
-            'email' => $email,
-            'password' => $password
-        ]);
-*/
     } 
 }
