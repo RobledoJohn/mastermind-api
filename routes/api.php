@@ -48,7 +48,8 @@ Route::put('/empresas', [empresaController::class, 'update']); //ruta para actua
 Route::get('/{idEmpresa}/ingresos', [ordenesController::class, 'read']); // Trae los ingresos por id de la empresa que inicia sesion
 Route::post('/{idEmpresa}/ingresos', [ordenesController::class, 'create']); //ruta para crear ingreso
 
-Route::put('/{idEmpresa}/ingresos/{id}', function(){return 'actualizar ingreso';});
+Route::get('/{idEmpresa}/ingresos/{id}', [ordenesController::class, 'findById']);
+Route::put('/{idEmpresa}/ingresos/{id}', [ordenesController::class, 'update']);
 Route::delete('/{idEmpresa}/ingresos/{id}', function(){return 'eliminar ingreso';});
 
 //API CLIENTES
