@@ -83,7 +83,7 @@ class clientesController extends Controller
                 return response()->json($result, 200); 
             }else{
                 $data = [
-                    'mensaje' => 'No se encontraron equipos',
+                    'mensaje' => 'Cliente no tiene equipos registrados',
                     'status' => 404
                 ];
                 return response()->json($data, 404);

@@ -98,5 +98,42 @@ class ordenesController extends Controller
             }
             return response()->json($orden, 200);
         }
-    }          
+    }
+    public function update(Request $request, $idEmpresa, $idIngreso){
+
+        $ingreso = Ingreso::where('id', $idIngreso)
+        ->first();
+
+        if ($ingreso) {
+
+            $request->validate([
+                'id_tecnico' => 'required',
+                'descripcion' => 'required',
+                'enum_estado_reparacion' => 'required|integer'
+            ]);
+
+            $ingreso->id_tecnico = $request->id_tecnico;
+            $ingreso->descripcion = $request->descripcion;
+            $ingreso->enum_estado_reparacion = $request->enum_estado_reparacion;
+
+            $ingreso->save();
+
+            return response()->json($ingreso, 200);
+        } else {
+            return response()->json(['mensaje' => 'Ingreso no encontrado'], 404);
+        }
+    }   
+    public function delete($idEmpresa, $idIngreso){
+        
+        $ingreso = Ingreso::find($idIngreso);
+
+        if ($ingreso) {
+            
+            $ingreso->delete();
+    
+            return response()->json(['mensaje' => 'Ingreso eliminado correctamente'], 200);
+        } else {
+            return response()->json(['mensaje' => 'Ingreso no encontrado'], 404);
+        }
+    }       
 }

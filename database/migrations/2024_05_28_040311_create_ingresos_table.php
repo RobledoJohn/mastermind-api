@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('descripcion');
             $table->timestamps();
 
-            $table->enum('enum_estado_reparacion', ['Sin asignar', 'Recepción', 'Diagnóstico', 'Reparación', 
-            'Esperando Repuesto', 'Pruebas', 'Listo para entrega', 'Finalizado'])->default('Sin asignar');
+            $table->enum('enum_estado_reparacion', ['Recepción', 'Diagnóstico', 'Reparación', 
+            'Esperando Repuesto', 'Pruebas', 'Listo para entrega', 'Finalizado'])->default('Recepción');
 
             $table->foreignId('id_tecnico')->constrained('tecnicos')->onDelete('cascade');
             $table->foreignId('id_equipo')->constrained('equipos')->onDelete('cascade');
