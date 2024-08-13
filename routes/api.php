@@ -17,6 +17,7 @@ use App\Http\Controllers\api\TiposDocumentosController;
 use App\Http\Controllers\api\CategoriasController;
 use App\Http\Controllers\api\equipoController;
 use App\Http\Controllers\api\marcasController;
+use App\Http\Controllers\api\modelosController;
 
 //CRUD(DESARROLLADOR)
 
@@ -27,6 +28,7 @@ Route::get('/admin/tecnicos', [AdminEmpresaController::class, 'getTecnicos'])->n
 Route::get('/admin/ingresos', [AdminEmpresaController::class, 'getOrdenes'])->name('admin.ordenes'); //laravel
 Route::get('/admin/productos', [AdminEmpresaController::class, 'getProductos']); //laravel
 Route::get('/admin/ventas', [AdminEmpresaController::class, 'getVentas']); //laravel
+
 
 //LOGIN
 
@@ -107,7 +109,14 @@ Route::get('/tiposDoc', [TiposDocumentosController::class, 'read']);
 //API Categorias
 Route::get('/categorias', [CategoriasController::class, 'read']);
 Route::post('/categorias', [CategoriasController::class, 'create']);
+
+//API MARCAS
+Route::get('/marcas', [marcasController::class, 'read']);
 Route::post('/marcas', [marcasController::class, 'create']);
+
+//API Modelos
+Route::get('/modelos', [modelosController::class, 'read']);
+Route::post('/modelos', [modelosController::class, 'create']);
 
 //enlace de seguimiento
 Route::get('/seguimiento/{idEquipo}}', function(){return 'Seguimiento de equipo';});
