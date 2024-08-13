@@ -15,8 +15,6 @@ use App\Http\Controllers\api\tecnicosController;
 use App\Http\Controllers\api\ciudadesController;
 use App\Http\Controllers\api\TiposDocumentosController;
 
-use function Laravel\Prompts\alert;
-
 //CRUD(DESARROLLADOR)
 
 //creando rutas para administrador de aplicacion, para poder hacer crud a las empresas que registren.
@@ -58,12 +56,13 @@ Route::delete('/{idEmpresa}/ingresos/{id}', [ordenesController::class, 'delete']
 //esta ruta lista los clientes de una empresa en especifico
 //el id de la empresa se envia por query (/clienntes?id_empresa=x), si no se envia query se listan todos los clientes del sistema
 Route::get('/{idEmpresa}/clientes', [clientesController::class, 'read']);
+Route::get('/{idEmpresa}/cliente/{id}', [clientesController::class, 'findById']);
 Route::get('/{idEmpresa}/clientes/{documento}', [clientesController::class, 'findByDocumento']);
 Route::post('/{idEmpresa}/clientes', [clientesController::class, 'create']);
-
 Route::put('/{idEmpresa}/cliente/{id}', [clientesController::class, 'update']);
+Route::delete('/{idEmpresa}/cliente/{id}', [clientesController::class, 'delete']);
 
-Route::delete('/{idEmpresa}/clientes/{id}', function(){return 'eliminar cliente';});
+
 
 //API TECNICOS
 //esta ruta lista los tecnicos de una empresa en especifico

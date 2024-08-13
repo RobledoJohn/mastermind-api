@@ -7,8 +7,7 @@ use App\Models\Cliente;
 use App\Models\Equipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
-use function Laravel\Prompts\select;
+use Illuminate\Validation\Rule;
 
 class clientesController extends Controller
 {
@@ -43,6 +42,39 @@ class clientesController extends Controller
 
     }  
 
+    public function findById($idEmpresa, $idCliente){
+        
+        if ($idEmpresa == null) {
+            $data = [
+                'mensaje' => 'No se envio id de empresa',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+
+        if ($idCliente == null) {
+            $data = [
+                'mensaje' => 'No se envio id del cliente',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+        
+        $cliente = Cliente::where('id_empresa', $idEmpresa)
+                           ->where('id', $idCliente)
+                           ->first();
+
+        if ($cliente) {
+            return response()->json($cliente, 200);
+        }else{
+            $data = [
+                'mensaje' => 'Cliente no encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+    }
+    
     public function findByDocumento($requestId, $documento){
 
         $idEmpresa = $requestId;
@@ -167,10 +199,10 @@ class clientesController extends Controller
         return response()->json($cliente, 201);
     }
 
-    public function update(Request $request, $id_empresa, $id_cliente){
+    public function update(Request $request, $idEmpresa, $idCliente){
 
-        $cliente = Cliente::where('id_empresa', $id_empresa)
-                          ->where('id', $id_cliente)
+        $cliente = Cliente::where('id_empresa', $idEmpresa)
+                          ->where('id', $idCliente)
                           ->first();
 
         if (!$cliente) {
@@ -183,11 +215,13 @@ class clientesController extends Controller
 
         $validacion = Validator::make($request->all(), [ //se valida que los datos sean correctos y se contsruye el objeto validacion
             'nombre' => 'required|max:255',
-            'nit' => [Rule::unique('empresas')->ignore($id)],
-            'email' => [Rule::unique('empresas')->ignore($id)],
-            'clave' => 'required|min:8|max:255',
+            'identificacion' => [Rule::unique('clientes')->ignore($idCliente)],
             'direccion' => 'required|max:255',
-            'telefono' => [Rule::unique('empresas')->ignore($id)]
+            'email' => [Rule::unique('clientes')->ignore($idCliente)],
+            'clave' => 'required|min:8|max:255',
+            'telefono' => [Rule::unique('clientes')->ignore($idCliente)],
+            'enum_tipo_documento' => 'required',
+            'id_ciudad' => 'required'
         ]);
 
         if($validacion->fails()){ //si la validacion falla se retorna el error al cliente
@@ -199,24 +233,50 @@ class clientesController extends Controller
             return response()->json($data, 400);            
         }
 
-        $empresa->nombre = $request->nombre;
-        $empresa->nit = $request->nit;
-        $empresa->email = $request->email;
-        $empresa->clave = $request->clave;
-        $empresa->avatar = $request->avatar;
-        $empresa->direccion = $request->direccion;
-        $empresa->telefono = $request->telefono;
+        $cliente->nombre = $request->nombre;
+        $cliente->identificacion = $request->identificacion;
+        $cliente->direccion = $request->direccion;
+        $cliente->email = $request->email;
+        $cliente->clave = $request->clave;
+        $cliente->telefono = $request->telefono;
+        $cliente->enum_tipo_documento = $request->enum_tipo_documento;
+        $cliente->id_ciudad = $request->id_ciudad;
 
-        $empresa->save();
+        $cliente->save();
 
         $data = [
-            'mensaje' => 'Empresa actualizada',
-            'empresa' => $empresa,
+            'mensaje' => 'Cliente actualizado',
+            'empresa' => $cliente,
             'status' => 200
         ];
 
         return response()->json($data, 200);
 
+    }
+
+    public function delete($idEmpresa, $idCliente){
+
+        $cliente = Cliente::where('id_empresa', $idEmpresa)
+                          ->where('id', $idCliente)
+                          ->first();
+
+        if(!$cliente){
+            $data = [
+                'id'=> $idCliente,
+                'mensaje' => 'Cliente no encontrado',
+                'status' => 200
+            ];
+            return response()->json($data, 404);
+        }
+
+        $cliente->delete();
+
+        $data = [
+            'mensaje' => 'Cliente Eliminado',
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
     }
 
 }
