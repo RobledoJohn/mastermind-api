@@ -15,6 +15,8 @@ use App\Http\Controllers\api\tecnicosController;
 use App\Http\Controllers\api\ciudadesController;
 use App\Http\Controllers\api\TiposDocumentosController;
 use App\Http\Controllers\api\CategoriasController;
+use App\Http\Controllers\api\equipoController;
+use App\Http\Controllers\api\marcasController;
 
 //CRUD(DESARROLLADOR)
 
@@ -73,11 +75,11 @@ Route::get('/{idEmpresa}/inventario', [inventariosController::class, 'read']); /
 
 //API EQUIPOS
 //esta ruta lista los equipos de una empresa en especifico, aqui que se muestra??
-Route::get('/{idEmpresa}/equipos', function(){return 'lista de equipos';});
+Route::get('/{idEmpresa}/equipos/{idCliente}', [equipoController::class, 'read']); //leer todos los equipos de un cliente
+Route::get('/{idCliente}/equipo/{idEquipo}', [equipoController::class, 'findById']); //leer un equipo en especifico
 
+Route::post('/{idEmpresa}/equipos', [equipoController::class, 'create']);
 
-Route::get('/{idEmpresa}/equipos/{id}', function(){return 'obtener equipo';});
-Route::post('/{idEmpresa}/equipos', function(){return 'crear equipo';});
 Route::put('/{idEmpresa}/equipos/{id}', function(){return 'actualizar equipo';});
 Route::delete('/{idEmpresa}/equipos/{id}', function(){return 'eliminar equipo';});
 
@@ -105,6 +107,7 @@ Route::get('/tiposDoc', [TiposDocumentosController::class, 'read']);
 //API Categorias
 Route::get('/categorias', [CategoriasController::class, 'read']);
 Route::post('/categorias', [CategoriasController::class, 'create']);
+Route::post('/marcas', [marcasController::class, 'create']);
 
 //enlace de seguimiento
 Route::get('/seguimiento/{idEquipo}}', function(){return 'Seguimiento de equipo';});
