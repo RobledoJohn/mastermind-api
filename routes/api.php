@@ -12,6 +12,8 @@ use App\Http\Controllers\api\ordenesController;
 use App\Http\Controllers\api\inventariosController;
 use App\Http\Controllers\api\ventasController;
 use App\Http\Controllers\api\tecnicosController;
+use App\Http\Controllers\api\ciudadesController;
+use App\Http\Controllers\api\TiposDocumentosController;
 
 use function Laravel\Prompts\alert;
 
@@ -57,8 +59,10 @@ Route::delete('/{idEmpresa}/ingresos/{id}', [ordenesController::class, 'delete']
 //el id de la empresa se envia por query (/clienntes?id_empresa=x), si no se envia query se listan todos los clientes del sistema
 Route::get('/{idEmpresa}/clientes', [clientesController::class, 'read']);
 Route::get('/{idEmpresa}/clientes/{documento}', [clientesController::class, 'findByDocumento']);
-Route::post('/{idEmpresa}/clientes', function(){return 'cliente creado';});
-Route::put('/{idEmpresa}/clientes/{id}', function(){return 'actualizar cliente';});
+Route::post('/{idEmpresa}/clientes', [clientesController::class, 'create']);
+
+Route::put('/{idEmpresa}/cliente/{id}', [clientesController::class, 'update']);
+
 Route::delete('/{idEmpresa}/clientes/{id}', function(){return 'eliminar cliente';});
 
 //API TECNICOS
@@ -95,5 +99,8 @@ Route::post('/{idEmpresa}/ventas', function(){return 'venta creado';});
 Route::put('/{idEmpresa}/ventas/{id}', function(){return 'actualizar venta';});
 Route::delete('/{idEmpresa}/ventas/{id}', function(){return 'eliminar venta';});
 
+Route::get('/ciudades', [ciudadesController::class, 'read']);
+Route::get('/tiposDoc', [TiposDocumentosController::class, 'read']);
+
 //enlace de seguimiento
-Route::get('/seguimiento/{idCliente/{idEquipo}}', function(){return 'Seguimiento de equipo';});
+Route::get('/seguimiento/{idEquipo}}', function(){return 'Seguimiento de equipo';});

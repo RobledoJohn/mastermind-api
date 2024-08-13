@@ -18,12 +18,20 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('clave');
             $table->bigInteger('telefono')->unique();
-            $table->string('avatar')->default('default-avatar.png');
+            $table->string('avatar')->default('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&s');
             $table->string('direccion', 100);
             $table->boolean('estado')->default(true);
             $table->timestamps();
 
-            $table->enum('enum_tipo_documento', ['CC', 'CE', 'Pasaporte'])->default('CC');
+            $table->enum('enum_tipo_documento', [
+                'Cedula de Ciudadania', 
+                'Tarjeta de Identidad', 
+                'Cedula de Extranjeria', 
+                'Pasaporte', 
+                'Registro Civil',
+                'NIT',
+                'RUT'
+                ])->default('Cedula de Ciudadania');
 
             // Relaciones
 
