@@ -42,39 +42,6 @@ class clientesController extends Controller
 
     }  
 
-    public function findById($idEmpresa, $idCliente){
-        
-        if ($idEmpresa == null) {
-            $data = [
-                'mensaje' => 'No se envio id de empresa',
-                'status' => 404
-            ];
-            return response()->json($data, 404);
-        }
-
-        if ($idCliente == null) {
-            $data = [
-                'mensaje' => 'No se envio id del cliente',
-                'status' => 404
-            ];
-            return response()->json($data, 404);
-        }
-        
-        $cliente = Cliente::where('id_empresa', $idEmpresa)
-                           ->where('id', $idCliente)
-                           ->first();
-
-        if ($cliente) {
-            return response()->json($cliente, 200);
-        }else{
-            $data = [
-                'mensaje' => 'Cliente no encontrado',
-                'status' => 404
-            ];
-            return response()->json($data, 404);
-        }
-    }
-    
     public function findByDocumento($requestId, $documento){
 
         $idEmpresa = $requestId;
@@ -133,6 +100,39 @@ class clientesController extends Controller
             
         
 
+    }
+
+    public function findById($idEmpresa, $idCliente){
+        
+        if ($idEmpresa == null) {
+            $data = [
+                'mensaje' => 'No se envio id de empresa',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+
+        if ($idCliente == null) {
+            $data = [
+                'mensaje' => 'No se envio id del cliente',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+        
+        $cliente = Cliente::where('id_empresa', $idEmpresa)
+                           ->where('id', $idCliente)
+                           ->first();
+
+        if ($cliente) {
+            return response()->json($cliente, 200);
+        }else{
+            $data = [
+                'mensaje' => 'Cliente no encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
     }
 
     public function create(Request $request){

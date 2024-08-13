@@ -14,6 +14,7 @@ use App\Http\Controllers\api\ventasController;
 use App\Http\Controllers\api\tecnicosController;
 use App\Http\Controllers\api\ciudadesController;
 use App\Http\Controllers\api\TiposDocumentosController;
+use App\Http\Controllers\api\CategoriasController;
 
 //CRUD(DESARROLLADOR)
 
@@ -35,14 +36,11 @@ Route::post('/auth', [authController::class, 'login']);
 Route::get('/empresas', [empresaController::class, 'findAll']); //busqueda para ver json
 Route::post('/empresas', [empresaController::class, 'create']); //ruta para crear cuenta de empresa
 Route::put('/empresas', [empresaController::class, 'update']); //ruta para actualizar datos de empresa
-
-//Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']); //NO SE USA PORQUE SE ALMACENA EN LOCAL STORAGE
-//Route::patch('/empresas/{idEmpresa}', [empresaController::class, 'updateOne']);
 //Route::delete('/empresas/{idEmpresa}', [empresaController::class, 'delete']); //NO SE USA PORQUE SE ACTUALIZA EL ESTADO A CERO
 
+//Route::get('/empresa/{idEmpresa}', [empresaController::class, 'findById']); //NO SE USA PORQUE SE ALMACENA EN LOCAL STORAGE
 
 //CRUD DEMAS ROLES (CLIENTE-TECNICO)
-
 //esta ruta lista los servicios ingresados que no han sido aceptados por ningun tecnico
 //Route::get('/ingresos', [ordenesController::class, 'read']);
 Route::get('/{idEmpresa}/ingresos', [ordenesController::class, 'read']); // Trae los ingresos por id de la empresa que inicia sesion
@@ -62,22 +60,22 @@ Route::post('/{idEmpresa}/clientes', [clientesController::class, 'create']);
 Route::put('/{idEmpresa}/cliente/{id}', [clientesController::class, 'update']);
 Route::delete('/{idEmpresa}/cliente/{id}', [clientesController::class, 'delete']);
 
-
-
 //API TECNICOS
 //esta ruta lista los tecnicos de una empresa en especifico
 Route::get('/{idEmpresa}/tecnicos', [tecnicosController::class, 'read']);
-Route::get('/{idEmpresa}/tecnicos/{id}', function(){return 'obtener tecnico';});
-Route::post('/{idEmpresa}/tecnicos', function(){return 'tecnico creado';});
-Route::put('/{idEmpresa}/tecnicos/{id}', function(){return 'actualizar tecnico';});
-Route::delete('/{idEmpresa}/tecnicos/{id}', function(){return 'eliminar tecnico';});
+Route::get('/{idEmpresa}/tecnico/{id}', [tecnicosController::class, 'findById']);
+Route::post('/{idEmpresa}/tecnico', [tecnicosController::class, 'create']);
+Route::put('/{idEmpresa}/tecnico/{id}', [tecnicosController::class, 'update']);
+Route::delete('/{idEmpresa}/tecnico/{id}', [tecnicosController::class, 'delete']);
 
 //esta ruta lista el inventario(productos) de una empresa en especifico
-Route::get('/{idEmpresa}/inventario', [inventariosController::class, 'read']);
+Route::get('/{idEmpresa}/inventario', [inventariosController::class, 'read']); //<------------------------------
 
 //API EQUIPOS
 //esta ruta lista los equipos de una empresa en especifico, aqui que se muestra??
 Route::get('/{idEmpresa}/equipos', function(){return 'lista de equipos';});
+
+
 Route::get('/{idEmpresa}/equipos/{id}', function(){return 'obtener equipo';});
 Route::post('/{idEmpresa}/equipos', function(){return 'crear equipo';});
 Route::put('/{idEmpresa}/equipos/{id}', function(){return 'actualizar equipo';});
@@ -98,8 +96,15 @@ Route::post('/{idEmpresa}/ventas', function(){return 'venta creado';});
 Route::put('/{idEmpresa}/ventas/{id}', function(){return 'actualizar venta';});
 Route::delete('/{idEmpresa}/ventas/{id}', function(){return 'eliminar venta';});
 
+//API CIUDADES
 Route::get('/ciudades', [ciudadesController::class, 'read']);
+
+//API TIPOS DE DOCUMENTOS
 Route::get('/tiposDoc', [TiposDocumentosController::class, 'read']);
+
+//API Categorias
+Route::get('/categorias', [CategoriasController::class, 'read']);
+Route::post('/categorias', [CategoriasController::class, 'create']);
 
 //enlace de seguimiento
 Route::get('/seguimiento/{idEquipo}}', function(){return 'Seguimiento de equipo';});
