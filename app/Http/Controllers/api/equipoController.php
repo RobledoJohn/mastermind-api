@@ -29,7 +29,7 @@ class equipoController extends Controller
         ->join('modelos', 'equipos.id_modelo', '=', 'modelos.id')
         ->join('marcas', 'modelos.id_marca', '=', 'marcas.id')
         ->join('clientes', 'equipos.id_cliente', '=', 'clientes.id')
-        ->select('equipos.*', 'modelos.nombre as modelo', 'marcas.nombre as marca', 'clientes.nombre as cliente')
+        ->select('equipos.*', 'modelos.enum_tipo_equipos as tipo_equipo', 'modelos.nombre as modelo', 'marcas.nombre as marca', 'clientes.nombre as cliente')
         ->get();       
         
         if ($response->isEmpty()) {
@@ -94,7 +94,7 @@ class equipoController extends Controller
                     $cliente = Cliente::where('identificacion', $request->identificacion)
                                 ->select('id')
                                 ->first();
-                                
+
                     $equipo = Equipo::create([
                         'id_cliente' => $cliente->id,
                         'id_modelo' => $request->id_modelo,
