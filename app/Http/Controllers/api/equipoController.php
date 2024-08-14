@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use App\Models\Equipo;
 use App\Models\Marca;
 use App\Models\Modelo;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -80,65 +82,50 @@ class equipoController extends Controller
     }
 
     public function create(Request $request){
-
-        $validacion = Validator::make($request->all(), [
-            'id_cliente' => 'required',
-            'id_modelo' => 'required',
-            'id_marca' => 'required', 
-            'enum_tipo_equipos' => 'required',
-        ]);
-
-        if ($validacion->fails()) { // Si la validación falla se retorna el error al cliente
-            $data = [
-                'mensaje' => 'Datos incorrectos',
-                'errores' => $validacion->errors(),
-                'status' => 400
-            ];
-            return response()->json($data, 400);
-        }
         
         // Validaciones de existencia
-        if (Marca::where('id_marca', $request->id_marca)->exists()) {
+
+        if (Cliente::where('identificacion', $request->identificacion)->exists()) {
             
-            $data = [
-                'mensaje' => 'La marca ya existe',
-                'status' => 400
-            ];
-            return response()->json($data, 400);
+            if (Marca::where('id', $request->id_marca)->exists()) {
+            
+                if (Modelo::where('id', $request->id_modelo)->exists()) {
+                    
+                    $cliente = Cliente::where('identificacion', $request->identificacion)
+                                ->select('id')
+                                ->first();
+                                
+                    $equipo = Equipo::create([
+                        'id_cliente' => $cliente->id,
+                        'id_modelo' => $request->id_modelo,
+                        'enum_tipo_equipos' => $request->enum_tipo_equipos,
+                    ]);
+
+                    return response()->json($equipo, 201);
+
+                }else{
+                    $data = [
+                        'mensaje' => 'El modelo no existe',
+                        'status' => 400
+                    ];
+                    return response()->json($data, 400);
+                }
+            
+            }else{
+                $data = [
+                    'mensaje' => 'La marca no existe',
+                    'status' => 400
+                ];
+                return response()->json($data, 400);
+            }
+            
         }else{
             $data = [
-                'mensaje' => 'La marca no existe',
+                'mensaje' => 'El cliente no existe',
                 'status' => 400
             ];
             return response()->json($data, 400);
         }
-
-
-        if (Modelo::where('id_modelo', $request->id_modelo)->exists()) {
-
-            $data = [
-                'mensaje' => 'El modelo existe',
-                'status' => 201
-            ];
-
-            return response()->json($data, 200);
-        }else{
-            $data = [
-                'mensaje' => 'El modelo no existe',
-                'status' => 400
-            ];
-            return response()->json($data, 400);
-        }
-
-        // Creación
-        $equipo = Equipo::create([
-            'id_cliente' => $request->id_cliente,
-            'id_modelo' => $request->id_modelo,
-            'id_marca' => $request->id_marca, 
-            'enum_tipo_equipos' => $request->enum_tipo_equipos,
-        ]);
-
-        return response()->json($equipo, 201);
     }
 
     public function update(Request $request, $idEmpresa, $idTecnico){

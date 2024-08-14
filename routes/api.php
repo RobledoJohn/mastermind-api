@@ -79,8 +79,8 @@ Route::get('/{idEmpresa}/inventario', [inventariosController::class, 'read']); /
 //esta ruta lista los equipos de una empresa en especifico, aqui que se muestra??
 Route::get('/{idEmpresa}/equipos/{idCliente}', [equipoController::class, 'read']); //leer todos los equipos de un cliente
 Route::get('/{idCliente}/equipo/{idEquipo}', [equipoController::class, 'findById']); //leer un equipo en especifico
-
 Route::post('/{idEmpresa}/equipos', [equipoController::class, 'create']);
+
 
 Route::put('/{idEmpresa}/equipos/{id}', function(){return 'actualizar equipo';});
 Route::delete('/{idEmpresa}/equipos/{id}', function(){return 'eliminar equipo';});
